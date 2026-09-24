@@ -1,0 +1,35 @@
+# GCP credentials - NEVER commit
+*.json
+
+# Byte-compiled / cache
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual environment
+venv/
+env/
+.venv/
+
+# Build artifacts
+build/
+dist/
+*.egg-info/
+
+# Logs
+logs/
+
+# Pipeline artifacts (raw/processed data, trained models)
+artifacts/
+
+# MLflow
+mlruns/
+mlartifacts/
+mlflow.db
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# OS files
+.DS_Store
+Thumbs.db
