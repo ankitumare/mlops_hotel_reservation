@@ -20,7 +20,8 @@ dist/
 logs/
 
 # Pipeline artifacts (raw/processed data, trained models)
-artifacts/
+artifacts/*
+!artifacts/models/
 
 # MLflow
 mlruns/

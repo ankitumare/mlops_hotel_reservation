@@ -1,0 +1,15 @@
+.git
+venv
+__pycache__
+*.pyc
+*.json
+logs
+mlruns
+mlartifacts
+mlflow.db
+build
+*.egg-info
+notebook
+custom_jenkins
+artifacts/raw
+artifacts/processed

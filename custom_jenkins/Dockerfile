@@ -16,6 +16,16 @@ RUN apt-get update -y && \
     apt-get install -y docker-ce docker-ce-cli containerd.io && \
     apt-get clean
 
+# Install Python and Google Cloud CLI
+RUN apt-get update -y && \
+    apt-get install -y python3 python3-pip python3-venv && \
+    ln -sf /usr/bin/python3 /usr/bin/python && \
+    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
+    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
+    apt-get update -y && \
+    apt-get install -y google-cloud-cli && \
+    apt-get clean
+
 # Add Jenkins user to the Docker group (create if it doesn't exist)
 RUN groupadd -f docker && \
     usermod -aG docker jenkins
