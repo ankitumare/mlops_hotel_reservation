@@ -20,11 +20,14 @@ RUN apt-get update -y && \
 RUN apt-get update -y && \
     apt-get install -y python3 python3-pip python3-venv && \
     ln -sf /usr/bin/python3 /usr/bin/python && \
-    curl -fsSL https://packages.cloud.google.com/apt/doc/apt-key.gpg | gpg --dearmor -o /usr/share/keyrings/cloud.google.gpg && \
-    echo "deb [signed-by=/usr/share/keyrings/cloud.google.gpg] https://packages.cloud.google.com/apt cloud-sdk main" > /etc/apt/sources.list.d/google-cloud-sdk.list && \
-    apt-get update -y && \
-    apt-get install -y google-cloud-cli && \
     apt-get clean
+
+RUN ARCH=$(uname -m) && \
+    curl -fsSL "https://dl.google.com/dl/cloudsdk/channels/rapid/downloads/google-cloud-cli-linux-${ARCH}.tar.gz" -o /tmp/gcloud.tar.gz && \
+    tar -xzf /tmp/gcloud.tar.gz -C /opt && \
+    /opt/google-cloud-sdk/install.sh --quiet --path-update=false --usage-reporting=false && \
+    ln -sf /opt/google-cloud-sdk/bin/gcloud /usr/bin/gcloud && \
+    rm /tmp/gcloud.tar.gz
 
 # Add Jenkins user to the Docker group (create if it doesn't exist)
 RUN groupadd -f docker && \
