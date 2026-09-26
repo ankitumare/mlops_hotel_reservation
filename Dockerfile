@@ -1,5 +1,5 @@
 # Use a lightweight Python image
-FROM python:slim
+FROM python:3.13-slim
 
 # Set environment variables to prevent Python from writing .pyc files & Ensure Python output is not buffered
 ENV PYTHONDONTWRITEBYTECODE=1 \
@@ -20,11 +20,8 @@ COPY . .
 # Install the package in editable mode
 RUN pip install --no-cache-dir -e .
 
-# Train the model before running the application
-RUN python pipeline/training_pipeline.py
-
-# Expose the port that Flask will run on
-EXPOSE 5000
+# Expose the port that Flask will run on (application.py listens on 8080)
+EXPOSE 8080
 
 # Command to run the app
 CMD ["python", "application.py"]
