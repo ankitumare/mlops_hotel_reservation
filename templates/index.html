@@ -134,9 +134,9 @@
 
     {% if prediction is not none %}
     <div class="result">
-        {% if prediction == 0 %}
+        {% if prediction == 'Canceled' %}
         <p>The Customer is going to cancel his reservation</p>
-        {% elif prediction == 1 %}
+        {% elif prediction == 'Not_Canceled' %}
         <p>The Customer is not going to cancel his reservation</p>
         {% endif %}
     </div>
